@@ -6,9 +6,9 @@
 
 <br>
 
-# Sistema de Gestão de Colheita de Cana-de-Açúcar
+# Sistema de Producao Agricola
 
-## Gestão do Agronegócio em Python
+## Gestao do Agronegocio em Python
 
 ## 👨‍🎓 Integrantes:
 - João Victor do Nascimento Gonçalves
@@ -23,52 +23,43 @@
 
 ## 📜 Descrição
 
-O Brasil é o maior produtor mundial de cana-de-açúcar, colhendo cerca de 620 milhões de toneladas por safra. Apesar do volume expressivo, as perdas durante a colheita são um problema sério para o setor: segundo a SOCICANA, chegam a até 5% na colheita manual e até 15% na colheita mecânica. Considerando a área plantada no estado de São Paulo, esse percentual representa uma perda anual de aproximadamente R$ 20 milhões.
+O agronegocio e um dos setores que mais gera empregos e riqueza no Brasil. Para que o produtor rural tome boas decisoes, e fundamental ter controle sobre o que planta, o quanto produz e qual e o retorno financeiro de cada cultura.
 
-Para enfrentar esse problema, este projeto desenvolve um **sistema de gestão de colheita de cana-de-açúcar** em Python, voltado ao pequeno e médio produtor rural. O sistema permite:
+Este projeto e um sistema de gestao de producao agricola desenvolvido em Python, onde o usuario pode registrar producoes de diferentes culturas (Soja, Milho, Cafe e Cana), informando a area plantada e o preco por tonelada. O sistema calcula automaticamente a producao estimada e a receita total, e permite salvar, carregar e exportar esses dados.
 
-- Cadastrar talhões (áreas de plantio) com variedade e tamanho em hectares
-- Registrar colheitas por talhão informando tipo (manual ou mecânica) e produção
-- Calcular automaticamente a perda estimada e a produção líquida de cada colheita
-- Visualizar a produtividade acumulada por talhão (toneladas por hectare)
-- Gerar relatório consolidado de perdas com dica de melhoria
-- Exportar relatório em arquivo de texto
-- Salvar e carregar todos os dados em arquivo JSON
-- Sincronizar os dados com banco de dados Oracle
+O projeto aplica os conteudos dos **capitulos 3 ao 6** da disciplina:
 
-O projeto aplica os conteúdos estudados nos **capítulos 3 ao 6** da disciplina:
-
-| Capítulo | Conteúdo | Aplicação no projeto |
+| Capitulo | Conteudo | Aplicacao no projeto |
 |----------|----------|----------------------|
-| 3 | Funções com parâmetros | `calcular_perda()`, `buscar_talhao()`, `ler_inteiro()` |
-| 3 | Procedimentos com parâmetros | `cadastrar_talhao()`, `registrar_colheita()`, `carregar_dados()` |
-| 4 | Lista | `talhoes` e `colheitas` — listas de dicionários em memória |
-| 4 | Tupla | `TIPOS_COLHEITA`, `VARIEDADES_CANA`, retorno de `calcular_perda()` |
-| 4 | Dicionário | cada talhão e cada colheita é representado por um dicionário |
-| 4 | Tabela de memória | `gerar_tabela_colheitas()` retorna uma lista de listas |
+| 3 | Funcoes com parametros | `calcular_producao()`, `calcular_receita()`, `ler_float()` |
+| 3 | Procedimentos com parametros | `registrar_producao()`, `carregar_dados()` |
+| 4 | Lista | `producoes` — lista de dicionarios em memoria |
+| 4 | Tupla | `culturas` com as opcoes disponiveis |
+| 4 | Dicionario | cada registro de producao e um dicionario |
+| 4 | Tabela de memoria | `gerar_tabela()` retorna uma lista de listas |
 | 5 | Arquivo JSON | `salvar_json()` e `carregar_json()` em `arquivo.py` |
-| 5 | Arquivo texto | `exportar_relatorio_txt()` e `registrar_log()` em `arquivo.py` |
-| 6 | Banco Oracle | todas as funções de `banco.py` utilizando `oracledb` |
+| 5 | Arquivo texto | `exportar_relatorio()` e `registrar_log()` em `arquivo.py` |
+| 6 | Banco Oracle | funcoes de `banco.py` usando `oracledb` |
 
 ---
 
 ## 📁 Estrutura de pastas
 
 ```
-agronegocio_cana/
+agronegocio-cana/
 ├── assets/
 │   └── logo-fiap.png
 ├── config/
-│   └── config.exemplo.py       — modelo de configuração do banco
-├── document/                   — documentos complementares
+│   └── config.exemplo.py       — modelo de configuracao do banco
+├── document/
 ├── scripts/
-│   └── create_tables.sql       — script de criação das tabelas no Oracle
+│   └── create_tables.sql       — script SQL para criar a tabela no Oracle
 ├── src/
-│   ├── main.py                 — menu principal e validações de entrada
-│   ├── colheita.py             — lógica de negócio e dados em memória
-│   ├── arquivo.py              — manipulação de arquivos JSON e texto
-│   ├── banco.py                — conexão e operações com o Oracle
-│   └── config.exemplo.py       — modelo de configuração (não contém credenciais)
+│   ├── main.py                 — menu principal e validacoes de entrada
+│   ├── producao.py             — logica de negocio e dados em memoria
+│   ├── arquivo.py              — manipulacao de arquivos JSON e texto
+│   ├── banco.py                — conexao e operacoes com o Oracle
+│   └── config.exemplo.py      — modelo de configuracao (sem credenciais)
 ├── .gitignore
 └── README.md
 ```
@@ -77,33 +68,30 @@ agronegocio_cana/
 
 ## 🔧 Como executar o código
 
-### Pré-requisitos
+### Pre-requisitos
 
 - Python 3.10 ou superior
-- Biblioteca `oracledb`:
+- Biblioteca `oracledb` (opcional, apenas para uso com Oracle):
 
 ```bash
 pip install oracledb
 ```
 
-### Configuração do banco de dados
+### Configuracao do banco de dados (opcional)
 
-1. Execute o script `scripts/create_tables.sql` no seu banco Oracle para criar as tabelas.
+1. Execute o script `scripts/create_tables.sql` no seu banco Oracle.
 
-2. Dentro da pasta `src/`, copie o arquivo de exemplo e preencha com suas credenciais:
+2. Copie o arquivo de exemplo e preencha com suas credenciais:
 
 ```bash
 cp src/config.exemplo.py src/config.py
 ```
 
 ```python
-# src/config.py
 ORACLE_USER     = "seu_usuario"
 ORACLE_PASSWORD = "sua_senha"
 ORACLE_DSN      = "host:porta/service_name"
 ```
-
-> O arquivo `config.py` está listado no `.gitignore` e não será enviado ao GitHub.
 
 ### Executando
 
@@ -112,14 +100,14 @@ cd src
 python main.py
 ```
 
-> O sistema funciona normalmente sem Oracle. As opções de salvar/carregar JSON e exportar relatório TXT estão sempre disponíveis.
+> O sistema funciona sem Oracle. Salvar/carregar JSON e exportar relatorio TXT estao sempre disponiveis.
 
 ---
 
 ## 🗃 Histórico de lançamentos
 
 * 0.1.0 - 10/04/2025
-    * Versão inicial: cadastro de talhões, registro de colheitas, cálculo de perdas, relatórios, persistência em JSON e texto, e sincronização com Oracle.
+    * Versao inicial: registro de producoes por cultura, calculo de producao e receita, persistencia em JSON e texto, e conexao com Oracle.
 
 ---
 

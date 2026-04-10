@@ -2,3 +2,4 @@ src/config.py
 src/dados/
 __pycache__/
 *.pyc
+dados/

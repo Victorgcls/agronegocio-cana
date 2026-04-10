@@ -1,0 +1,23 @@
+{
+    "exportado_em": "10/04/2026 09:00:56",
+    "talhoes": [
+        {
+            "id": 1,
+            "nome": "Talhao Sul",
+            "area_ha": 30.0,
+            "variedade": "CTC4"
+        }
+    ],
+    "colheitas": [
+        {
+            "id": 1,
+            "id_talhao": 1,
+            "data": "10/04/2024",
+            "producao_bruta_ton": 2500.0,
+            "tipo_colheita": "Manual",
+            "perda_percentual": 5.0,
+            "perda_ton": 125.0,
+            "producao_liquida_ton": 2375.0
+        }
+    ]
+}

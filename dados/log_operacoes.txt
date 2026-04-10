@@ -1,0 +1,9 @@
+[10/04/2026 08:56:59] Dados salvos em JSON: 1 talhão(ões), 1 colheita(s).
+[10/04/2026 08:56:59] Dados carregados do JSON: 1 talhão(ões), 1 colheita(s).
+[10/04/2026 08:56:59] Relatório TXT exportado para: C:\Users\Victor\Desktop\Python e além\agronegocio_cana\dados\relatorio.txt
+[10/04/2026 09:00:56] Dados salvos em JSON: 1 talhão(ões), 1 colheita(s).
+[10/04/2026 09:09:43] Sistema iniciado.
+[10/04/2026 10:35:01] Sistema iniciado.
+[10/04/2026 10:35:15] Sincronização Oracle: 0 talhões, 0 colheitas.
+[10/04/2026 10:42:15] Sistema iniciado.
+[10/04/2026 10:42:23] Sincronização Oracle: 0 talhões, 0 colheitas.
